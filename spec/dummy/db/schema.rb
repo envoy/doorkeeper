@@ -58,13 +58,15 @@ ActiveRecord::Schema.define(version: 20160320211015) do
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
 
   create_table "oauth_device_access_grants", force: true do |t|
-    t.integer  "application_id", null: false
-    t.string   "token",          null: false
-    t.string   "user_token",     null: false
-    t.integer  "expires_in",     null: false
-    t.datetime "created_at",     null: false
+    t.integer  "application_id",    null: false
+    t.string   "token",             null: false
+    t.string   "user_token",        null: false
+    t.integer  "expires_in",        null: false
+    t.datetime "created_at",        null: false
     t.datetime "revoked_at"
     t.string   "scopes"
+    t.integer  "resource_owner_id"
+    t.datetime "last_polled_at"
   end
 
   add_index "oauth_device_access_grants", ["token"], name: "index_oauth_device_access_grants_on_token", unique: true
