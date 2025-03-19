@@ -1,7 +1,6 @@
 module Doorkeeper
   module OAuth
-    class DeviceTokenRequest
-      include Validations
+    class DeviceTokenRequest < BaseRequest
       include OAuth::RequestConcern
 
       validate :client,           error: :invalid_client
