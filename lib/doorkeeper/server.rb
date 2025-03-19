@@ -31,6 +31,10 @@ module Doorkeeper
       context.send :current_resource_owner
     end
 
+    def device_grant
+      DeviceAccessGrant.by_token(parameters[:code])
+    end
+
     # TODO: Use configuration and evaluate proper context on block
     def resource_owner
       context.send :resource_owner_from_credentials

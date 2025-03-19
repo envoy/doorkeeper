@@ -262,6 +262,8 @@ module Doorkeeper
     # It will be used for token reusablity to some threshold percentage
     # Rationale: https://github.com/doorkeeper-gem/doorkeeper/issues/1189
     option :token_reuse_limit,              default: 100
+    option :device_verification_url
+    option :device_polling_interval,        default: 5
 
     # Don't require client authentication for password grants. If client credentials
     # are present they will still be validated, and the grant rejected if the credentials

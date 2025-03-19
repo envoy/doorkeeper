@@ -2,6 +2,7 @@
 
 module Doorkeeper
   autoload :AccessGrant, "doorkeeper/orm/active_record/access_grant"
+  autoload :DeviceAccessGrant "doorkeeper/orm/active_record/device_access_grant"
   autoload :AccessToken, "doorkeeper/orm/active_record/access_token"
   autoload :Application, "doorkeeper/orm/active_record/application"
   autoload :RedirectUriValidator, "doorkeeper/orm/active_record/redirect_uri_validator"

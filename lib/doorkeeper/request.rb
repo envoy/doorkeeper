@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'doorkeeper/request/device_code'
+require 'doorkeeper/request/device_token'
 
 module Doorkeeper
   module Request

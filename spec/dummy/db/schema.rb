@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(version: 20230205064514) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "oauth_device_access_grants", force: true do |t|
+    t.integer  "application_id",    null: false
+    t.string   "token",             null: false
+    t.string   "user_token",        null: false
+    t.integer  "expires_in",        null: false
+    t.datetime "created_at",        null: false
+    t.datetime "revoked_at"
+    t.string   "scopes"
+    t.integer  "resource_owner_id"
+    t.datetime "last_polled_at"
+    t.index ["token"], name: "index_oauth_device_access_grants_on_token", unique: true
+    t.index ["user_token"], name: "index_oauth_device_access_grants_on_user_token", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at"

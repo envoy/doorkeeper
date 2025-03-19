@@ -13,12 +13,14 @@ module Doorkeeper
             authorized_applications: "doorkeeper/authorized_applications",
             tokens: "doorkeeper/tokens",
             token_info: "doorkeeper/token_info",
+            devices: "doorkeeper/devices",
           }
 
           @as = {
             authorizations: :authorization,
             tokens: :token,
             token_info: :token_info,
+            devices: :device,
           }
 
           @skips = []

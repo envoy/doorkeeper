@@ -2,6 +2,7 @@
 
 require "doorkeeper/config"
 require "doorkeeper/engine"
+require 'doorkeeper/oauth/device_token_request'
 
 # Main Doorkeeper namespace.
 #

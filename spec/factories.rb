@@ -9,6 +9,11 @@ FactoryBot.define do
     scopes { "public write" }
   end
 
+  factory :device_access_grant, class: "Doorkeeper::DeviceAccessGrant" do
+    application
+    expires_in 600
+  end
+
   factory :access_token, class: "Doorkeeper::AccessToken" do
     sequence(:resource_owner_id) { |n| n }
     application

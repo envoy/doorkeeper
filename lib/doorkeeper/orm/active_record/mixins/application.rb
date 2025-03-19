@@ -15,6 +15,10 @@ module Doorkeeper::Orm::ActiveRecord::Mixins
                dependent: :delete_all,
                class_name: Doorkeeper.config.access_grant_class.to_s
 
+      has_many :device_access_grants, 
+               dependent: :destroy, 
+               class_name: 'Doorkeeper::DeviceAccessGrant'
+
       has_many :access_tokens,
                foreign_key: :application_id,
                dependent: :delete_all,
