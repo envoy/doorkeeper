@@ -18,7 +18,7 @@ module Doorkeeper
         belongs_to_options[:optional] = true
       end
 
-      belongs_to :application, belongs_to_options
+      belongs_to :application, **belongs_to_options
 
       validates :token, presence: true, uniqueness: true
       validates :refresh_token, uniqueness: true, if: :use_refresh_token?

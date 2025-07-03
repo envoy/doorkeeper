@@ -9,7 +9,7 @@ module Doorkeeper
           belongs_to_options[:optional] = true
         end
 
-        belongs_to :owner, belongs_to_options
+        belongs_to :owner, **belongs_to_options
         validates :owner, presence: true, if: :validate_owner?
       end
 
