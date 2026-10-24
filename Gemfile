@@ -6,6 +6,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem "rails", "~> 6.0"
+# concurrent-ruby 1.3.5 stopped requiring "logger", which Rails < 7.1 relies on
+gem "concurrent-ruby", "< 1.3.5"
 
 gem "rspec-core"
 gem "rspec-expectations"

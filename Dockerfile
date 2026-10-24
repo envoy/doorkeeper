@@ -1,24 +1,25 @@
-FROM ruby:2.6.5-alpine
-# CVE-2026-111943 / CVE-2026-114406: distrust the compromised eMudhra intermediates (emSign ECC Root CA - G3, Comodo AAA Services root)
-RUN apk add --no-cache ca-certificates && \
-    sed -i -e 's|^mozilla/emSign_ECC_Root_CA_-_G3.crt|!&|' -e 's|^mozilla/Comodo_AAA_Services_root.crt|!&|' /etc/ca-certificates.conf && \
-    update-ca-certificates
+FROM ruby:3.1.7-slim-bookworm
 
-RUN apk add --no-cache \
+# CVE-2026-111943 / CVE-2026-114406: upgrade ca-certificates and fail the build unless it
+# distrusts the compromised eMudhra intermediates (fixed in Debian 12 20250419~deb12u2)
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends \
   ca-certificates \
   wget \
-  openssl \ 
-  bash \
-  build-base \
+  openssl \
+  build-essential \
   git \
-  sqlite-dev \
-  tzdata
+  libsqlite3-dev \
+  libyaml-dev \
+  tzdata && \
+  rm -rf /var/lib/apt/lists/* && \
+  dpkg --compare-versions "$(dpkg-query -W -f='${Version}' ca-certificates)" ge 20250419~deb12u2
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-ENV BUNDLER_VERSION 2.1.4
+ENV BUNDLER_VERSION 2.6.9
 RUN gem install bundler -v ${BUNDLER_VERSION} -i /usr/local/lib/ruby/gems/$(ls /usr/local/lib/ruby/gems) --force
 
 WORKDIR /srv
