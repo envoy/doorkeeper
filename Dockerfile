@@ -1,4 +1,8 @@
 FROM ruby:2.6.5-alpine
+# CVE-2026-111943 / CVE-2026-114406: distrust the compromised eMudhra intermediates (emSign ECC Root CA - G3, Comodo AAA Services root)
+RUN apk add --no-cache ca-certificates && \
+    sed -i -e 's|^mozilla/emSign_ECC_Root_CA_-_G3.crt|!&|' -e 's|^mozilla/Comodo_AAA_Services_root.crt|!&|' /etc/ca-certificates.conf && \
+    update-ca-certificates
 
 RUN apk add --no-cache \
   ca-certificates \
